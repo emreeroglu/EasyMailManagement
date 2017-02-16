@@ -93,3 +93,6 @@ ENV/
 
 # Test Database
 *.sqlite3
+
+# .DS_Store
+.DS_Store
