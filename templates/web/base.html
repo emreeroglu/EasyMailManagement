@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{% block title %}{% trans "HomePage" %}{% endblock %} | Easy Mail Management</title>
+    <title>{% block title %}{% trans "Home Page" %}{% endblock %} | Easy Mail Management</title>
     <link rel="shortcut icon" href="{% static "img/favicon.jpg" %}">
     <link rel="stylesheet" href="{% static "css/bootstrap.css" %}"/>
     <link rel="stylesheet" href="{% static "css/main.css" %}"/>
@@ -27,10 +27,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="work.html">Work</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
+              <li><a href="{% url 'login' %}?next={{ request.path }}">{% trans "Login" %}</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

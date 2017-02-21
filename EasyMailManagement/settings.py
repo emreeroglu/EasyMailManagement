@@ -26,6 +26,7 @@ SECRET_KEY = 'sjpr9ujlbs1-=bio&wfh1km@0w8z%k-ce#-8i2#ll%a0ydrpj5'
 DEBUG = True
 APPEND_SLASH = True
 ROOT_URLCONF = 'EasyMailManagement.urls'
+AUTH_USER_MODEL = 'common.User'
 
 ALLOWED_HOSTS = ['*']
 
@@ -112,6 +113,11 @@ LANGUAGES = (
     ('en', gettext('English')),
     ('tr', gettext('Turkish')),
 )
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
 
 LANGUAGE_CODE = 'en-us'
 
