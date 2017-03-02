@@ -28,6 +28,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
               <li><a href="{% url 'login' %}?next={{ request.path }}">{% trans "Login" %}</a></li>
+              <li><a href="{% url 'register' %}?next={{ request.path }}">{% trans "Register" %}</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
