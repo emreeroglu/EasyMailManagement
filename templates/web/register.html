@@ -1,3 +1,19 @@
 {% extends "web/base.html" %}
-
-{% block title %}{% trans "Register Page" %}{% endblock %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Register " %}{% endblock %}
+{% block content %}
+    <div class="container pt">
+        <div class="sign_in_wrapper">
+            <div class="sign_in_form">
+                <form action="/register/" method="POST" class="sign_form_class">
+                    {% csrf_token %}
+                    {{ form }}
+                    </br>
+                    <button class="sign_in_style__btn" type="submit">{% trans "Register" %}</button>
+                </form>
+                {% if error %}<div class="login-error">{{ error }}</div>{% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,3 +1,24 @@
 {% extends "web/base.html" %}
-
-{% block title %}{% trans "Login Page" %}{% endblock %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Login " %}{% endblock %}
+{% block content %}
+    <div class="container pt">
+        <div class="sign_in_wrapper">
+            <div class="sign_in_form">
+                <form action="/login/" method="POST" class="sign_form_class">
+                    {% csrf_token %}
+                    {% if request.GET.next %}
+                        <input type="hidden" hidden class="hidden" name="next" value="{{ request.GET.next }}">
+                    {% else %}
+                        <input type="hidden" name="next" value="/">
+                    {% endif %}
+                    {{ form }}
+                    </br>
+                    <button class="sign_in_style__btn" type="submit">{% trans "Login" %}</button>
+                </form>
+                {% if error %}<div class="login-error">{{ error }}</div>{% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
