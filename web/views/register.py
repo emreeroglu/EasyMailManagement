@@ -9,7 +9,7 @@ def register_page(request):
     return render(request, 'web/register.html', {'form': form})
 
 
-def do_register(request):
+def doregister(request):
     if request.method == 'POST':
         if request.user.is_anonymous:
             request_form = request.POST['form']
