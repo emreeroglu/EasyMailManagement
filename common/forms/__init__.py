@@ -1,4 +1,4 @@
-from .RegisterForm import RegisterForm, EditRegisterForm
+from .RegisterForm import RegisterForm
 from .LoginForm import LoginForm
 
 __all__ = []

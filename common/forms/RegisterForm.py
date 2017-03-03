@@ -111,8 +111,3 @@ class RegisterForm(forms.ModelForm):
                 # No user with such email, its ok to create new one
                 pass
         return email
-
-class EditRegisterForm(RegisterForm):
-    class Meta:
-        model = get_user_model()
-        fields = ['first_name', 'last_name', 'email', 'mobile', 'language']
