@@ -3,6 +3,7 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
+from collections import OrderedDict
 
 
 class RegisterForm(forms.ModelForm):
@@ -57,10 +58,44 @@ class RegisterForm(forms.ModelForm):
             'class': 'form-control select2'
         })
     )
+    password = forms.CharField(
+        label=_("Password"),
+        required=True,
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'oninvalid': 'makeFormActive();',
+            'required': 'required',
+            'placeholder': _("Password")
+        })
+    )
+    password_confirm = forms.CharField(
+        label=_("Confirm Password"),
+        required=True,
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'oninvalid': 'makeFormActive();',
+            'required': 'required',
+            'placeholder': _("Enter password again to confirm")
+        })
+    )
 
     class Meta:
         model = get_user_model()
-        fields = ['first_name', 'last_name', 'email', 'mobile', 'language']
+        fields = ['first_name', 'last_name', 'email', 'password', 'mobile', 'language']
+
+    def __init__(self,*args,**kwargs):
+        super(RegisterForm, self).__init__(*args,**kwargs)
+        # import code
+        # code.interact(local=locals())
+        fields_keyOrder = ['first_name', 'last_name', 'email', 'password', 'password_confirm',
+                           'mobile', 'language']
+        self.fields = OrderedDict((k, self.fields[k]) for k in fields_keyOrder)
+
+    def clean(self):
+        password = self.cleaned_data.get('password', '')
+        password_confirm = self.cleaned_data.get('password_confirm', '')
+        if password != password_confirm:
+            raise forms.ValidationError(_("Password doesn't match"))
 
     def clean_email(self):
         """

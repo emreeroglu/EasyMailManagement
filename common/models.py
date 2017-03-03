@@ -2,6 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from uuid import uuid4
 
 
 class User(AbstractUser):
@@ -26,6 +27,8 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         if not self.mobile:
             self.mobile = None
+        if not self.username:
+            self.username = str(uuid4())
         super(User, self).save(*args, **kwargs)
 
     class Meta:
