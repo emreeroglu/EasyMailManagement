@@ -12,7 +12,7 @@ def register_page(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save(commit=True)
-            # @TODO Use confirmation email
+            # @TODO Use confirmation sms !! make email area optional
             login(request, user)
             return redirect('index')
         # for is not valid:
