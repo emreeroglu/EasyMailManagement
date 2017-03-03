@@ -28,6 +28,16 @@ class RegisterForm(forms.ModelForm):
             'required': 'required'
         })
     )
+    username = forms.CharField(
+        label=_("Username"),
+        required=True,
+        widget=forms.TextInput(attrs={
+            'placeholder': _('Username'),
+            'oninvalid': 'makeFormActive();',
+            'class': 'form-control',
+            'required': 'required'
+        })
+    )
     email = forms.EmailField(
         label=_("Email"),
         required=True,
@@ -81,13 +91,13 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['first_name', 'last_name', 'email', 'password', 'mobile', 'language']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password', 'mobile', 'language']
 
     def __init__(self,*args,**kwargs):
         super(RegisterForm, self).__init__(*args,**kwargs)
         # import code
         # code.interact(local=locals())
-        fields_keyOrder = ['first_name', 'last_name', 'email', 'password', 'password_confirm',
+        fields_keyOrder = ['first_name', 'last_name', 'username', 'email', 'password', 'password_confirm',
                            'mobile', 'language']
         self.fields = OrderedDict((k, self.fields[k]) for k in fields_keyOrder)
 

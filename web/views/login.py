@@ -23,6 +23,7 @@ def login_page(request):
         next_url = request.POST['next']
         user = get_user(username=username)
         if user.is_authenticated():
+            login(request, user)
             return redirect('index')
         if not username or not password:
             return render(request, 'web/login.html', {'error': _('Missing Fields')})

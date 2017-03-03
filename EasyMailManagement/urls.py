@@ -6,6 +6,7 @@ from web import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', views.login_page, name='login'),
+    url(r'^loginrequired/$', views.login_required, name='loginrequired'),
     url(r'^logout/$', views.logout_page, name='logout'),
     url(r'^register/$', views.register_page, name='register'),
     url(r'^$', views.index, name='index'),

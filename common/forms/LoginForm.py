@@ -8,11 +8,11 @@ from django.db.models import Q
 
 class LoginForm(forms.ModelForm):
     """Create login form."""
-    email = forms.EmailField(
-        label=_("Email"),
+    username = forms.CharField(
+        label=_("Username"),
         required=True,
-        widget=forms.EmailInput(attrs={
-            'placeholder': _('Email'),
+        widget=forms.TextInput(attrs={
+            'placeholder': _('Username'),
             'oninvalid': 'makeFormActive();',
             'class': 'form-control',
             'required': 'required'
@@ -31,4 +31,4 @@ class LoginForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['email', 'password']
+        fields = ['username', 'password']
