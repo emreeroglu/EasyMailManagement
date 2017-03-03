@@ -1,7 +1,8 @@
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from web.forms import LoginForm
+from django.utils.translation import ugettext_lazy as _
+
+from common.forms import LoginForm
 from common.models import User
 
 

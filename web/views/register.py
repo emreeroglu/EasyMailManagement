@@ -1,7 +1,7 @@
-from common.models import User
-from django.shortcuts import render, redirect
-from web.forms import RegisterForm
 from django.contrib.auth import login
+from django.shortcuts import render, redirect
+
+from common.forms import RegisterForm
 
 
 def register_page(request):
