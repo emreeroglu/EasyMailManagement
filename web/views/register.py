@@ -12,10 +12,10 @@ def register_page(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save(commit=True)
-            # @TODO Use confirmation sms !! make email area optional
+            # @TODO Use confirmation sms !! make email optional
             login(request, user)
             return redirect('index')
-        # for is not valid:
+        # form is not valid:
         return render(request, 'web/register.html', {'form': form})
     form = RegisterForm()
     return render(request, 'web/register.html', {'form': form})
