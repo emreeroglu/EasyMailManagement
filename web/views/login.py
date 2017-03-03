@@ -16,6 +16,7 @@ def get_user(email=None, username=None):
         return None
 
 
+# @TODO: check username in template with ajax
 def login_page(request):
     if request.method == 'POST':
         username = request.POST['username']
