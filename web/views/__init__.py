@@ -1,5 +1,5 @@
 from .index import index
-from .login import login_page, login_required
+from .login import login_page
 from .logout import logout_page
 from .register import register_page
 
