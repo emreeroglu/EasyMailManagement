@@ -20,9 +20,9 @@ def get_user(email=None, username=None):
 def login_page(request):
     form = LoginForm()
     if request.method == 'POST':
-        username = request.POST.get('username', False)
-        password = request.POST.get('password', False)
-        next_url = request.POST.get('next', False)
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
+        next_url = request.POST.get('next', None)
         # Check if all required information supplied or not
         if not username or not password:
             return render(request, 'web/login.html', {'form': form, 'error': _('Missing Fields.')})
