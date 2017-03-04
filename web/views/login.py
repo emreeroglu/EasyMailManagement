@@ -18,32 +18,26 @@ def get_user(email=None, username=None):
 
 # @TODO: check username in template with ajax
 def login_page(request):
+    form = LoginForm()
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        next_url = request.POST['next']
-        user = get_user(username=username)
-        if user.is_authenticated():
-            login(request, user)
-            return redirect('index')
+        username = request.POST.get('username', False)
+        password = request.POST.get('password', False)
+        next_url = request.POST.get('next', False)
+        # Check if all required information supplied or not
         if not username or not password:
-            return render(request, 'web/login.html', {'error': _('Missing Fields')})
-        if '@' in username:
-            _user = get_user(email=username)
-        else:
-            _user = get_user(username=username)
-        if not _user:
-            return render(request, 'web/login.html', {'error': _('User not found')})
-        username = _user.username
-        _user = authenticate(username=username, password=password)
-        if _user:
-            if _user.is_active:
-                login(request, _user)
+            return render(request, 'web/login.html', {'form': form, 'error': _('Missing Fields.')})
+        # Check user existence.
+        user = get_user(username=username)
+        if not user:
+            return render(request, 'web/login.html', {'form': form, 'error': _('User not found.')})
+        # Check is user authenticated or not.
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
                 return redirect(next_url)
             else:
-                return render(request, 'web/login.html', {'error': _('Account Disabled')})
+                return render(request, 'web/login.html', {'form': form, 'error': _('Account Disabled.')})
         else:
-            return render(request, 'web/login.html', {'error': _('Invalid login credentials')})
-
-    form = LoginForm()
+            return render(request, 'web/login.html', {'form': form, 'error': _('Invalid login credentials.')})
     return render(request, 'web/login.html', {'form': form})

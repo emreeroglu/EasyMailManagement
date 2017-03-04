@@ -94,7 +94,7 @@ class RegisterForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'username', 'email', 'password', 'mobile', 'language']
 
     def __init__(self,*args,**kwargs):
-        super(RegisterForm, self).__init__(*args,**kwargs)
+        super(RegisterForm, self).__init__(*args, **kwargs)
         # import code
         # code.interact(local=locals())
         fields_keyOrder = ['first_name', 'last_name', 'username', 'email', 'password', 'password_confirm',
