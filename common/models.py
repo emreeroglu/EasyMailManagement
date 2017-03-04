@@ -27,8 +27,6 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         if not self.mobile:
             self.mobile = None
-        if not self.username:
-            self.username = str(uuid4())
         super(User, self).save(*args, **kwargs)
 
     class Meta:
