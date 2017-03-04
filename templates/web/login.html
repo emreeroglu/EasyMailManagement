@@ -6,7 +6,7 @@
     <div class="container pt">
         <div class="sign_in_wrapper">
             <div class="sign_in_form">
-                <form action="/login/" method="POST" class="sign_form_class">
+                <form action="{% url 'login' %}" method="POST" class="sign_form_class">
                     {% csrf_token %}
                     {% if request.GET.next %}
                         <input type="hidden" hidden class="hidden" name="next" value="{{ request.GET.next }}">
