@@ -13,7 +13,6 @@ class RegisterForm(forms.ModelForm):
         required=True,
         widget=forms.TextInput(attrs={
             'placeholder': _('First Name'),
-            'oninvalid': 'makeFormActive();',
             'class': 'form-control',
             'required': 'required'
         })
@@ -23,7 +22,6 @@ class RegisterForm(forms.ModelForm):
         required=True,
         widget=forms.TextInput(attrs={
             'placeholder': _('Last Name'),
-            'oninvalid': 'makeFormActive();',
             'class': 'form-control',
             'required': 'required'
         })
@@ -33,7 +31,6 @@ class RegisterForm(forms.ModelForm):
         required=True,
         widget=forms.TextInput(attrs={
             'placeholder': _('Username'),
-            'oninvalid': 'makeFormActive();',
             'class': 'form-control',
             'required': 'required'
         })
@@ -43,7 +40,6 @@ class RegisterForm(forms.ModelForm):
         required=True,
         widget=forms.EmailInput(attrs={
             'placeholder': _('Email'),
-            'oninvalid': 'makeFormActive();',
             'class': 'form-control',
             'required': 'required'
         })
@@ -53,7 +49,6 @@ class RegisterForm(forms.ModelForm):
         required=True,
         widget=forms.TextInput(attrs={
             'placeholder': _('+'),
-            'oninvalid': 'makeFormActive();',
             'class': 'form-control phone-number',
             'type': 'tel',
             'required': 'required'
@@ -73,7 +68,6 @@ class RegisterForm(forms.ModelForm):
         required=True,
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
-            'oninvalid': 'makeFormActive();',
             'required': 'required',
             'placeholder': _("Password")
         })
@@ -83,7 +77,6 @@ class RegisterForm(forms.ModelForm):
         required=True,
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
-            'oninvalid': 'makeFormActive();',
             'required': 'required',
             'placeholder': _("Enter password again to confirm")
         })
