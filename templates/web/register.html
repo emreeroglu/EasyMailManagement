@@ -6,17 +6,20 @@
     <div class="container pt">
         <div class="sign_up_wrapper">
             <div class="sign_up_form">
+
+                {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+
+                <div id="ajax-error-box">
+                        <div class="unused" id="ajax-error"></div>
+                </div>
                 <form action="" method="POST" class="sign_form_class">
                     {% csrf_token %}
                     {{ form }}
-                    </br>
+                    <br>
                     <button class="sign_up_style__btn" type="submit">{% trans "Register" %}</button>
                 </form>
-                {% if error %}
-                    <div class="login-error">{{ error }}</div>
-                {% endif %}
-
-                    <div class="login-error">{{ error }}</div>
             </div>
         </div>
     </div>
@@ -31,7 +34,11 @@
                 dataType: 'json',
                 success: function (data) {
                     if (data.is_taken) {
-                        alert(data.error_message);
+                        $('#ajax-error-box div.unused').removeClass('unused').addClass('alert alert-danger');
+                        $("#ajax-error").html(data.error_message);
+                    } else {
+                        $('#ajax-error-box div.alert').removeClass('alert alert-danger').addClass('unused');
+                        $("#ajax-error").html("");
                     }
                 }
             });
