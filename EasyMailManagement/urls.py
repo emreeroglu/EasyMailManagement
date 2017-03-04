@@ -10,3 +10,7 @@ urlpatterns = i18n_patterns(
     url(r'^register/$', views.register_page, name='register'),
     url(r'^$', views.index, name='index'),
 )
+
+urlpatterns += {
+    url(r'^ajax/check_username/$',  views.check_username, name='check_username'),
+}
