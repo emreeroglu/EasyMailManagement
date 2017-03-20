@@ -1,0 +1,19 @@
+{% extends "web/base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Home " %}{% endblock %}
+{% block content %}
+    <!-- +++++ Projects Section +++++ -->
+    <div class="container pt">
+        <div class="row mt left">
+            <div class="col-lg-4">
+                <a href="work01.html"><img class="img-responsive" src="{% static 'img/mail.png' %}" alt="" /></a>
+            </div>
+        </div><!-- /row -->
+        <div class="row mt centered">
+            <div class="col-lg-4">
+                <a href="work01.html"><img class="img-responsive" src="{% static 'img/mail.png' %}" alt="" /></a>
+            </div>
+        </div><!-- /row -->
+    </div><!-- /container -->
+{% endblock %}
