@@ -5,15 +5,22 @@
 {% block content %}
     <!-- +++++ Projects Section +++++ -->
     <div class="container pt">
-        <div class="row mt left">
-            <div class="col-lg-4">
-                <a href="work01.html"><img class="img-responsive" src="{% static 'img/mail.png' %}" alt="" /></a>
+
+        <div class="col-lg-8">
+        </div>
+        <div class="col-lg-4">
+            Add Server
+        </div>
+        {% for server in servers %}
+            <div class="row mt left">
+                <div class="col-lg-2">
+                    <a href="work01.html"><img class="img-responsive" src="{% static 'img/mail.png' %}" alt="" /></a>
+                </div>
+                <div class="col-lg-2">
+                    {{ server.name }}
+                </div>
             </div>
-        </div><!-- /row -->
-        <div class="row mt centered">
-            <div class="col-lg-4">
-                <a href="work01.html"><img class="img-responsive" src="{% static 'img/mail.png' %}" alt="" /></a>
-            </div>
-        </div><!-- /row -->
+
+        {% endfor %}
     </div><!-- /container -->
 {% endblock %}
