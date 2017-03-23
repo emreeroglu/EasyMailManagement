@@ -5,12 +5,16 @@
 {% block content %}
     <!-- +++++ Projects Section +++++ -->
     <div class="container pt">
-
         <div class="col-lg-8">
         </div>
         <div class="col-lg-4">
-            Add Server
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'add_server' %}?next={{ request.path }}">{% trans "Add Server" %}</a></li>
+                </ul>
+            </div>
         </div>
+
         {% for server in servers %}
             <div class="row mt left">
                 <div class="col-lg-2">

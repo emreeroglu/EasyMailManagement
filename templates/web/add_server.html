@@ -1,0 +1,27 @@
+{% extends "web/base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Home " %}{% endblock %}
+{% block content %}
+    <div class="container pt">
+        <div class="sign_in_wrapper">
+            <div class="sign_in_form">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+
+                <form action="{% url 'add_server' %}" method="POST" class="sign_form_class">
+                    {% csrf_token %}
+                    {% if request.GET.next %}
+                        <input type="hidden" hidden class="hidden" name="next" value="{{ request.GET.next }}">
+                    {% else %}
+                        <input type="hidden" name="next" value="/">
+                    {% endif %}
+                    {{ form }}
+                    </br>
+                    <button class="sign_in_style__btn" type="submit">{% trans "Add" %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

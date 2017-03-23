@@ -1,3 +1,3 @@
-from .AddServerForm import AddServerFrom
+from .AddServerForm import AddServerForm
 
-__all__ = []
+__all__ = ['AddServerForm']
