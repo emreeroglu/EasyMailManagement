@@ -6,7 +6,6 @@ from web import views
 urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
     url(r'^servers/', views.servers, name='servers'),
-    url(r'^add_server/', views.add_server, name='add_server'),
     url(r'^login/$', views.login_page, name='login'),
     url(r'^logout/$', views.logout_page, name='logout'),
     url(r'^register/$', views.register_page, name='register'),
