@@ -3,7 +3,7 @@
 {% load staticfiles %}
 {% block title %}{% trans "Home " %}{% endblock %}
 {% block content %}
-    {% if not servers %}
+    {% if form %}
         <div class="container pt">
             {% if error %}
                 <div class="alert alert-danger">{{ error }}</div>
@@ -22,32 +22,30 @@
             </form>
         </div>
     {% else %}
-        <!-- +++++ Projects Section +++++ -->
         <div class="container pt">
-        <div class="col-lg-8">
-        </div>
-        <div class="col-lg-4">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <form action="{% url 'servers' %}" method="GET">
-                        <input type="hidden" name="add_server" value="true">
-                        <li><button class="sign_in_style__btn" type="submit">{% trans "Add Server" %}</button></li>
-                    </form>
-                </ul>
+            <div class="col-lg-8">
             </div>
-        </div>
-
-        {% for server in servers %}
-            <div class="row mt left">
-                <div class="col-lg-2">
-                    <a href="work01.html"><img class="img-responsive" src="{% static 'img/mail.png' %}" alt="" /></a>
-                </div>
-                <div class="col-lg-2">
-                    {{ server.name }}
+            <div class="col-lg-4">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <form action="{% url 'servers' %}" method="GET">
+                            <input type="hidden" name="add_server" value="true">
+                            <li><button class="sign_in_style__btn" type="submit">{% trans "Add Server" %}</button></li>
+                        </form>
+                    </ul>
                 </div>
             </div>
-        {% endfor %}
 
+            {% for server in servers %}
+                <div class="row mt left">
+                    <div class="col-lg-2">
+                        <a href="work01.html"><img class="img-responsive" src="{% static 'img/mail.png' %}" alt="" /></a>
+                    </div>
+                    <div class="col-lg-2">
+                        {{ server.name }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
-</div><!-- /container -->
 {% endblock %}

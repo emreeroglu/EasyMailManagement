@@ -15,6 +15,17 @@ class AddServerForm(forms.ModelForm):
         })
     )
 
+    ip = forms.CharField(
+        label=_("Server IP Address"),
+        required=True,
+        widget=forms.TextInput(attrs={
+            'placeholder': _('IP Address'),
+            'oninvalid': 'makeFormActive();',
+            'class': 'form-control',
+            'required': 'required'
+        })
+    )
+
     class Meta:
         model = Server
-        fields = ['name']
+        fields = ['name', 'ip']
