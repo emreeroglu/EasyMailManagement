@@ -37,17 +37,18 @@ def ssh_copy_id(identity='~/.ssh/id_rsa.pub'):
 
 
 def install_sudo():
-    print("dememe0")
     try:
-        deneme = 'dene'
-        with settings(prompts={deneme: ""}):
-            print("dememe1")
-            test = prompt(deneme)
-            print("dememe2")
-            print(test)
-            run("su -")
-            run("apt-get install sudo")
-    except SystemExit:
+        with settings(prompts={"assword: ": remote_password}):
+            run("su -c 'apt-get install sudo'")
+    except Exception:
+        print("Error")
+
+
+def add_user_to_sudoers():
+    try:
+        with settings(prompts={"assword: ": remote_password}):
+            run("su -c 'usermod -aG sudo %s'" % remote_user)
+    except Exception:
         print("Error")
 
 
@@ -59,7 +60,9 @@ def update_system():
     sudo("apt-get update")
 
 
+def upgrade_system():
+    sudo("apt-get dist-upgrade -y")
+
+
 def print_user():
     run('echo "%(user)s"' % env)
-
-install_sudo()
