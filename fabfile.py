@@ -30,7 +30,7 @@ def ssh_copy_id(identity='~/.ssh/id_rsa.pub'):
     with cd('~'):
         # Make sure the SSH directory is created.
         run('mkdir -p .ssh')
-        # And append to the authrized keys.
+        # And append to the authorized keys.
         run('cat %(REMOTE_PATH)s >> ~/.ssh/authorized_keys' % locals())
         # Be thourough and leave no trace of this interaction!
         run('rm %(REMOTE_PATH)s' % locals())
