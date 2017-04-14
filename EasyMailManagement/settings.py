@@ -129,6 +129,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL.strip("/"))
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL.strip("/"))
 
+SERVER_NAME_TAG = "emm"
+# Digital Ocean api token
+DO_TOKEN = None
+# Digital Ocean mail server tag
+DO_TAG = None
+# Digital Ocean Server ram size
+DO_SIZE_SLUG = None
+# Digital Ocean Server region
+DO_SERVER_REGION = None
+# Digital Ocean server image slug
+DO_IMAGE_SLUG = None
+# Server ssh key for remote control
+DO_SSH_KEY = []
+
 try:
     from local_settings import *
 except ImportError as e:
