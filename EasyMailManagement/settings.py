@@ -129,11 +129,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL.strip("/"))
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL.strip("/"))
 
-SERVER_NAME_TAG = "emm"
+# Digital Ocean mail server name prefix
+DO_NAME_PREFIX = 'emm'
 # Digital Ocean api token
 DO_TOKEN = None
 # Digital Ocean mail server tag
-DO_TAG = None
+DO_TAGS = None
 # Digital Ocean Server ram size
 DO_SIZE_SLUG = None
 # Digital Ocean Server region
