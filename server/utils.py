@@ -1,14 +1,14 @@
 from digitalocean import Manager, Droplet
 from digitalocean.baseapi import BaseAPI
 
-from EasyMailManagement.settings import DO_TOKEN, DO_TAG
+from EasyMailManagement.settings import DO_TOKEN, DO_TAGS
 
 
 class DigitalOcean(object):
     @staticmethod
-    def get_server_list():
+    def get_droplet_list():
         manager = Manager(token=DO_TOKEN)
-        droplets = manager.get_all_droplets(tag_name=DO_TAG)
+        droplets = manager.get_all_droplets(tag_name=DO_TAGS)
         return droplets
 
     @staticmethod
@@ -24,7 +24,7 @@ class DigitalOcean(object):
         return new_image_list
 
     @staticmethod
-    def create_server(name=None, region=None, image_slug=None, size_slug=None, ssh_keys=[], backups=False):
-        droplet = Droplet(token=DO_TOKEN, name=name, region=region, image=image_slug, size_slug=size_slug,
-                          ssh_keys=ssh_keys, backups=backups)
-        return droplet.create()
+    def create_droplet(*args, **kwargs):
+        droplet = Droplet(*args, **kwargs)
+        droplet.create()
+        return droplet
