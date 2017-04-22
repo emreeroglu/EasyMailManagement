@@ -5,7 +5,7 @@ from web import views
 
 urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
-    url(r'^emailboxes/', views.emailboxes, name='emailboxes'),
+    url(r'^e_mails/', views.e_mails, name='e_mails'),
     url(r'^about/', views.about, name='about'),
     url(r'^login/$', views.login_page, name='login'),
     url(r'^logout/$', views.logout_page, name='logout'),

@@ -1,9 +1,9 @@
 from django.utils.translation import ugettext_lazy as _
 from django import forms
-from emailbox.models import EMailBox
+from electronicmail.models import ElectronicMail
 
 
-class AddEMailBoxForm(forms.ModelForm):
+class AddElectronicMailForm(forms.ModelForm):
     email = forms.EmailField(
         label=_("Full Email Address"),
         required=True,
@@ -26,5 +26,5 @@ class AddEMailBoxForm(forms.ModelForm):
     )
 
     class Meta:
-        model = EMailBox
+        model = ElectronicMail
         fields = ['email', 'mail_box_size']

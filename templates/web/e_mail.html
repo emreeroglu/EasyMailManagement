@@ -9,7 +9,7 @@
                 <div class="alert alert-danger">{{ error }}</div>
             {% endif %}
 
-            <form action="{% url 'emailboxes' %}" method="POST" class="sign_form_class">
+            <form action="{% url 'e_mails' %}" method="POST" class="sign_form_class">
                 {% csrf_token %}
                 {% if request.GET.next %}
                     <input type="hidden" hidden class="hidden" name="next" value="{{ request.GET.next }}">
@@ -28,21 +28,21 @@
             <div class="col-lg-4">
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <form action="{% url 'emailboxes' %}" method="GET">
+                        <form action="{% url 'e_mails' %}" method="GET">
                             <input type="hidden" name="add_mail_box" value="true">
-                            <li><button class="sign_in_style__btn" type="submit">{% trans "Add Mail Box" %}</button></li>
+                            <li><button class="sign_in_style__btn" type="submit">{% trans "Add E-Mails" %}</button></li>
                         </form>
                     </ul>
                 </div>
             </div>
 
-            {% for email_box in email_boxes %}
+            {% for e_mail in e_mail_list %}
                 <div class="row mt left">
                     <div class="col-lg-2">
                         <a href="#"><img class="img-responsive" src="{% static 'img/mail.png' %}" alt="" /></a>
                     </div>
                     <div class="col-lg-2">
-                        {{ email_box.email }}
+                        {{ e_mail.email }}
                     </div>
                 </div>
             {% endfor %}
