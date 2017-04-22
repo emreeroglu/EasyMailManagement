@@ -7,10 +7,10 @@ from server.models import Server
 @login_required(login_url='login')
 def e_mails(request):
     if request.GET:
-        add_server = request.GET.get('add_mail_box', '')
+        add_server = request.GET.get('add_electronic_mail', '')
         if add_server == "true":
             form = AddElectronicMailForm()
-            return render(request, 'web/e_mail.html', {'form': form})
+            return render(request, 'web/e_mails.html', {'form': form})
     if request.POST:
         form = AddElectronicMailForm(request.POST)
         if form.is_valid():
@@ -19,8 +19,8 @@ def e_mails(request):
             new_email_box.save()
             new_email_box.setup()
             e_mail_list = request.user.electronicmail_set.all()
-            return render(request, "web/e_mail.html", {'e_mail_list': e_mail_list})
+            return render(request, "web/e_mails.html", {'e_mail_list': e_mail_list})
         # form is not valid:
-        return render(request, 'web/e_mail.html', {'form': form})
+        return render(request, 'web/e_mails.html', {'form': form})
     e_mail_list = request.user.electronicmail_set.all()
-    return render(request, "web/e_mail.html", {'e_mail_list': e_mail_list})
+    return render(request, "web/e_mails.html", {'e_mail_list': e_mail_list})

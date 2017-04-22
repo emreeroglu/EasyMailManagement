@@ -6,6 +6,7 @@
         <li><a href="{% url 'contact' %}?next={{ request.path }}">{% trans "Contact" %}</a></li>
         {% if user.is_authenticated %}
             <li><a href="{% url 'e_mails' %}?next={{ request.path }}">{% trans "E-Mails" %}</a></li>
+            <li><a href="{% url 'servers' %}?next={{ request.path }}">{% trans "Servers" %}</a></li>
             <li><a href="{% url 'user_management' %}?next={{ request.path }}">{% trans "User Management" %}</a></li>
             <li><a href="{% url 'logout' %}?next={{ request.path }}">{% trans "Logout" %}</a></li>
         {% else %}
