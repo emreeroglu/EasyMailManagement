@@ -1,5 +1,7 @@
 from django.db import models
+from multiprocessing import Process
 from common.models import User
+from server.models import Server
 
 
 class EMailBox(models.Model):
@@ -12,3 +14,9 @@ class EMailBox(models.Model):
         if len(self.email):
             return self.email
         return self.email
+
+    def setup(self):
+        p = Process(target=Server.set_email_box, args=(self,))
+        p.start()
+        p.join()
+

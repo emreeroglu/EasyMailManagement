@@ -1,9 +1,12 @@
 {% load i18n %}
 <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'index' %}?next={{ request.path }}">{% trans "Home" %}</a></li>
+        <li><a href="{% url 'about' %}?next={{ request.path }}">{% trans "About" %}</a></li>
+        <li><a href="{% url 'contact' %}?next={{ request.path }}">{% trans "Contact" %}</a></li>
         {% if user.is_authenticated %}
-            <li><a href="{% url 'personal' %}?next={{ request.path }}">{% trans "Personal" %}</a></li>
-            <li><a href="{% url 'corporate' %}?next={{ request.path }}">{% trans "Coporate" %}</a></li>
+            <li><a href="{% url 'emailboxes' %}?next={{ request.path }}">{% trans "E-Mailboxes" %}</a></li>
+            <li><a href="{% url 'user_management' %}?next={{ request.path }}">{% trans "User Management" %}</a></li>
             <li><a href="{% url 'logout' %}?next={{ request.path }}">{% trans "Logout" %}</a></li>
         {% else %}
             <li><a href="{% url 'login' %}?next={{ request.path }}">{% trans "Login" %}</a></li>

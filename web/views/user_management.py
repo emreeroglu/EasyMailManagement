@@ -3,5 +3,5 @@ from django.shortcuts import render
 
 
 @login_required(login_url='login')
-def corporate(request):
-    return render(request, "web/corporate.html")
+def user_management(request):
+    return render(request, "web/user_management.html")

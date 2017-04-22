@@ -5,12 +5,13 @@ from web import views
 
 urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
-    url(r'^personal/', views.personal, name='personal'),
-    url(r'^corporate/', views.corporate, name='corporate'),
-    url(r'^servers/', views.servers, name='servers  '),
+    url(r'^emailboxes/', views.emailboxes, name='emailboxes'),
+    url(r'^about/', views.about, name='about'),
     url(r'^login/$', views.login_page, name='login'),
     url(r'^logout/$', views.logout_page, name='logout'),
     url(r'^register/$', views.register_page, name='register'),
+    url(r'^user_management/', views.user_management, name='user_management'),
+    url(r'^contact/', views.contact, name='contact'),
     url(r'^$', views.index, name='index'),
 )
 
