@@ -15,6 +15,25 @@ class AddServerForm(forms.ModelForm):
         })
     )
 
+    static_mailbox_quota = forms.IntegerField(
+        label=_("Static Mailbox Quota"),
+        widget=forms.TextInput(attrs={
+            'placeholder': _('0'),
+            'oninvalid': 'makeFormActive();',
+            'class': 'form-control',
+            'required': 'required'
+        })
+    )
+
+    is_for_sell = forms.BooleanField(
+        label=_("Is For Sell"),
+        widget=forms.CheckboxInput(attrs={
+            'oninvalid': 'makeFormActive();',
+            'class': 'form-control',
+            'required': 'required'
+        })
+    )
+
     class Meta:
         model = Server
         fields = ['name']
