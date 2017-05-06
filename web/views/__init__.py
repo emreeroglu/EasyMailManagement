@@ -3,7 +3,7 @@ from .login import login_page
 from .logout import logout_page
 from .register import register_page, check_username
 from .about import about
-from .e_mails import e_mails
+from .electronic_mails import e_mails
 from .contact import contact
 from .user_management import user_management
 from .servers import servers
