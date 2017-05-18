@@ -27,16 +27,16 @@ class Debian():
     def ssh_copy_id(self, identity='~/.ssh/id_rsa.pub'):
         env.shell = self.sh_path
         # Copy the key over.
-        REMOTE_PATH = '~/id.pub'
-        put(identity, REMOTE_PATH)
+        remote_path = '~/id.pub'
+        put(identity, remote_path)
 
         with cd('~'):
             # Make sure the SSH directory is created.
             run('mkdir -p .ssh')
             # And append to the authorized keys.
-            run('cat %(REMOTE_PATH)s >> ~/.ssh/authorized_keys' % locals())
+            run('cat %(remote_path)s >> ~/.ssh/authorized_keys' % locals())
             # Be thourough and leave no trace of this interaction!
-            run('rm %(REMOTE_PATH)s' % locals())
+            run('rm %(remote_path)s' % locals())
 
     def install_sudo(self):
         try:
@@ -52,11 +52,14 @@ class Debian():
         except Exception:
             print("Error")
 
-    def update_system(self):
+    @staticmethod
+    def update_system():
         sudo("apt-get update")
 
-    def upgrade_system(self):
+    @staticmethod
+    def upgrade_system():
         sudo("apt-get dist-upgrade -y")
 
-    def print_user(self):
+    @staticmethod
+    def print_user():
         run('echo "%(user)s"' % env)
