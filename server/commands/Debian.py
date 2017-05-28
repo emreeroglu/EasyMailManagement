@@ -24,21 +24,21 @@ class Debian():
         env.host_string = self.remote_host
         env.abort_on_prompts = False
 
-    def ssh_copy_id(self, identity='~/.ssh/id_rsa.pub'):
+    def ssh_copy_id(self, identity='~/.ssh/id_rsa.pub', user_name='~'):
         env.shell = self.sh_path
+        # Create .ssh directory
+        run('mkdir -p /home/%s/.ssh' % user_name)
+        # Fix permissions
+        run("chown %(user_name)s:%(user_name)s /home/%(user_name)s/.ssh" % {'user_name':user_name})
+        run("chmod 700 /home/%s/.ssh" % user_name)
         # Copy the key over.
-        remote_path = '~/id.pub'
+        remote_path = ('/home/%s/.ssh/authorized_keys' % user_name)
         put(identity, remote_path)
+        # Fix permissions
+        run("chmod 600 /home/%s/.ssh/authorized_keys" % user_name)
+        run("chown %(user_name)s:%(user_name)s /home/%(user_name)s/.ssh/authorized_keys" % {'user_name':user_name})
 
-        with cd('~'):
-            # Make sure the SSH directory is created.
-            run('mkdir -p .ssh')
-            # And append to the authorized keys.
-            run('cat %(remote_path)s >> ~/.ssh/authorized_keys' % locals())
-            # Be thourough and leave no trace of this interaction!
-            run('rm %(remote_path)s' % locals())
-
-    def install_sudo(self):
+    '''def install_sudo(self):
         try:
             with settings(prompts={"assword: ": self.remote_password}):
                 run("su -c 'apt-get install sudo'")
@@ -50,16 +50,54 @@ class Debian():
             with settings(prompts={"assword: ": self.remote_password}):
                 run("su -c 'usermod -aG sudo %s'" % self.remote_user)
         except Exception:
-            print("Error")
+            print("Error")'''
 
     @staticmethod
-    def update_system():
+    def update_system_as_user():
         sudo("apt-get update")
 
     @staticmethod
-    def upgrade_system():
+    def upgrade_system_as_user():
         sudo("apt-get dist-upgrade -y")
 
     @staticmethod
     def print_user():
         run('echo "%(user)s"' % env)
+
+    @staticmethod
+    def add_user_as_root(user_name, password):
+        try:
+            with settings(prompts={"assword: ": password}):
+                run("useradd %s" % user_name)
+                run("passwd %s" % user_name)
+                run("mkdir /home/emre")
+        except Exception:
+            print("Error when creating user %s passsword." % user_name)
+
+    @staticmethod
+    def update_system_as_root():
+        run("apt-get update")
+
+    @staticmethod
+    def upgrade_system_as_root():
+        run("apt-get dist-upgrade -y")
+
+    @staticmethod
+    def install_sudo_as_root():
+        run("apt-get install sudo")
+
+    @staticmethod
+    def add_user_to_sudoers_as_root(user_name, password):
+        try:
+            with settings(prompts={"assword: ": password}):
+                run("usermod -aG sudo %s" % user_name)
+        except Exception:
+            print("Error when adding user %s to sudoers." % user_name)
+
+    @staticmethod
+    def disable_root_login():
+        sudo("sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config")
+
+    @staticmethod
+    def reload_ssh():
+        sudo("systemctl restart ssh")
