@@ -44,7 +44,9 @@
                         <a href="#"><img class="img-responsive" src="{% static 'img/mail.png' %}" alt="" /></a>
                     </div>
                     <div class="col-lg-2">
-                        {{ server.name }}
+                        Name: {{ server.name }}
+                        </br>
+                        Ip v4: {{ server.ip_v4 }}
                     </div>
                 </div>
             {% endfor %}
