@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'electronicmail',
     'operatingsystem',
     'command',
+    'commandset',
     'common',
     'web',
 ]
