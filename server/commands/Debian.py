@@ -69,7 +69,7 @@ class Debian():
             with settings(prompts={"assword: ": password}):
                 run("useradd %s" % user_name)
                 run("passwd %s" % user_name)
-                run("mkdir /home/emre")
+                run("mkdir /home/%s" % user_name)
         except Exception:
             print("Error when creating user %s passsword." % user_name)
 
