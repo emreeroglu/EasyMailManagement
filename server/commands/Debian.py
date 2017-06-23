@@ -20,9 +20,8 @@ class Debian():
         env.user = self.remote_user
         env.password = self.remote_password
         env.hosts = []
-        env.hosts.append(self.remote_host)
-        env.host_string = self.remote_host
-        env.abort_on_prompts = False
+        env.hosts.append(remote_host)
+        env.host_string = remote_hostgti
 
     def ssh_copy_id(self, identity='~/.ssh/id_rsa.pub', user_name='~'):
         env.shell = self.sh_path

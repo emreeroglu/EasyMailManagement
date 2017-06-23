@@ -1,6 +1,8 @@
 from fabric.api import local, put, hosts, settings, abort, cd, env, run, task, sudo, prompt
 from fabric.contrib.console import confirm
 #from fabric.operations import prompt
+
+
 sh_path = '/bin/sh -l -c'
 bash_path = '/bin/bash'
 
