@@ -1,2 +1,3 @@
-# EasyMailManagement
-Easy mail management service.
+# Easy Server Management System
+
+
